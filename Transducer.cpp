@@ -7,61 +7,27 @@
 
 #include "Transducer.h"
 
-Transducer::Transducer (int tPin, int num) {
-	serial = true;
-	id = num;
-	pin = tPin;
-	int pres = ReadPressure();
+Transducer::Transducer (int _pin, int _id) : DataCollector(_pin, _id, 0.00733, 15, 'A') {
 
-	for (int i = 0; i < RUNNINGAVG; i++) {
-		pressure[i] = pres;
-	}
 }
 
 void Transducer::Update () {
-	if (serialUpdate >= SERIALUPDATEINTERVAL) {
-		serialUpdate -= SERIALUPDATEINTERVAL;
-		if (serial) {
-			Serial.print("A" + String(id) + "S");
-			Serial.println(ReadPressure(), MAXSERIALDIGITS);
-		}
-	}
-
-	if (avgUpdate >= AVGUPDATE) {
-		avgUpdate -= AVGUPDATE;
-
-		AddPressure();
-	}
+	DataCollector::Update();
 }
 
-float Transducer::AvgPressure () {
-	double avg = 0;
-
-	for (int i = 0; i < RUNNINGAVG; i++) {
-		avg += pressure[i];
-	}
-
-	return avg/RUNNINGAVG;
+float Transducer::AvgData () {
+	return DataCollector::AvgData();
 }
 
-float Transducer::ReadPressure () {
-	double raw = analogRead(pin);
-	raw *= 0.00733; // 30 PSI / 4095 analog units
-	return raw;
+float Transducer::ReadData () {
+	return DataCollector::ReadData();
 }
 
-void Transducer::AddPressure () {
-	for (int i = 0; i < RUNNINGAVG; i++) {
-		if (i < RUNNINGAVG-1) {
-			pressure[i] = pressure[i+1];
-		}
-		else {
-			pressure[i] = ReadPressure();
-		}
-	}
+void Transducer::AddData () {
+	DataCollector::AddData();
 }
 
 void Transducer::DisableSerial () {
-	serial = false;
+	DataCollector::DisableSerial();
 }
 

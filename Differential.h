@@ -9,40 +9,16 @@
 #define DIFFERENTIAL_H_
 
 #include "Arduino.h"
+#include "DataCollector.h"
 
-#ifndef RUNNINGAVG
-#define RUNNINGAVG 15
-#endif
-
-#ifndef SERIALUPDATEINTERVAL
-#define SERIALUPDATEINTERVAL 250
-#endif
-
-#ifndef MAXSERIALDIGITS
-#define MAXSERIALDIGITS 3
-#endif
-
-#ifndef AVGUPDATE
-#define AVGUPDATE 2
-#endif
-
-class Differential {
+class Differential : public DataCollector {
 public:
-	elapsedMillis avgUpdate = 0;
-	elapsedMillis serialUpdate = 0;
-
-	Differential(int tPin, int num);
+	Differential(int _pin, int _id);
 	void Update();
-	float AvgPressure ();
-	float ReadPressure ();
-	void AddPressure ();
+	float AvgData ();
+	float ReadData ();
+	void AddData ();
 	void DisableSerial ();
-
-private:
-	int id;
-	int pin;
-	bool serial;
-	float pressure[RUNNINGAVG];
 };
 
 #endif /* DIFFERENTIAL_H_ */

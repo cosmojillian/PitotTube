@@ -9,40 +9,17 @@
 #define TRANSDUCER_H_
 
 #include "Arduino.h"
+#include "DataCollector.h"
 
-#ifndef RUNNINGAVG
-#define RUNNINGAVG 15
-#endif
-
-#ifndef SERIALUPDATEINTERVAL
-#define SERIALUPDATEINTERVAL 250
-#endif
-
-#ifndef MAXSERIALDIGITS
-#define MAXSERIALDIGITS 3
-#endif
-
-#ifndef AVGUPDATE
-#define AVGUPDATE 2
-#endif
-
-class Transducer {
+class Transducer : public DataCollector {
 public:
-	elapsedMillis avgUpdate = 0;
-	elapsedMillis serialUpdate = 0;
-
-	Transducer(int tPin, int num);
+	Transducer(int _pin, int _id);
 	void Update();
-	float AvgPressure ();
-	float ReadPressure ();
-	void AddPressure ();
+	float AvgData ();
+	float ReadData ();
+	void AddData ();
 	void DisableSerial ();
 
-private:
-	int id;
-	int pin;
-	bool serial;
-	float pressure[RUNNINGAVG];
 };
 
 #endif /* TRANSDUCER_H_ */

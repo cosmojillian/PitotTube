@@ -52,7 +52,7 @@ void Actuator::Update () {
 
 		if (serial) {
 			Serial.print("P" + String(id) + "S");
-			Serial.println(AvgPosition(), MAXSERIALDIGITS);
+			Serial.println(AvgPosition(), 3);
 		}
 	}
 

@@ -8,6 +8,8 @@
 /*
  * todo
  * -Create Temperature class
+ * -Get rid of magic numbers in DataCollector et al
+ * -Change the Actuator to use the DataCollector Class
  *
  * Future work
  * -Create a velocity dependent positioning control (no more stalling)
@@ -26,7 +28,7 @@
  * 1.1.0
  * -Major code refactoring:
  * 	-Divided repeated code and configurations into objects
- * 	 -Objects created for Pressure Transducers, Differential Pressure Sensors, Linear Actuators, and the MAX83155 temp sensor
+ * 	 -Objects created for general Data Collectors, Pressure Transducers, Differential Pressure Sensors, Linear Actuators, and the MAX83155 temp sensor
  * 	-Reworked actuator safety features to use the running average instead of last value
  * 	-Reworked the actuator position finding to compare the history average with the current value (to minimize skipping and low on)
  * 	-Created a configuration file
@@ -93,6 +95,7 @@ void setup() {
 
 // the loop routine runs over and over again forever:
 void loop() {
+	//To be removed
 	if (lastTempGrab >= TEMPADDINTERVAL) {
 		lastTempGrab -= TEMPADDINTERVAL;
 
