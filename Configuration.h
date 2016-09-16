@@ -28,7 +28,7 @@
 
 #define SENDTEMP 1
 #define SENDPRES 1
-#define SENDPOS 0
+#define SENDPOS 1
 
 //Absolute pressure gauge pin def
 #define TRANSDUCERPIN 0

@@ -64,7 +64,7 @@ void Actuator::Update () {
 			MoveActuator(curPos);
 			float difference = position[RUNNINGAVGLEN-1] - position[0];
 			if (abs(difference)  >= .05) {
-				Serial.println(difference);
+				//Serial.println(difference);
 				if (difference > 0 && (curPos - setPosition) > 0) {
 					//Fault();
 					Serial.println("Wrong way");
