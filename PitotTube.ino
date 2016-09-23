@@ -9,7 +9,7 @@
  * todo
  * -Create Temperature class
  * -Get rid of magic numbers in DataCollector et al
- * -Change the Actuator to use the DataCollector Class
+ * -Implement EEPROM for all sensors
  *
  * Future work
  * -Create a velocity dependent positioning control (no more stalling)
@@ -36,8 +36,8 @@
  */
 
 //Actuators
-Actuator actuator1(MOTOR1DIR1, MOTOR1DIR2, MOTOR1SPEED, ACTUATORPOT1, .5, TOLERANCE, '1');
-Actuator actuator2(MOTOR2DIR1, MOTOR2DIR2, MOTOR2SPEED, ACTUATORPOT2, .5, TOLERANCE, '2');
+Actuator actuator1(MOTOR1DIR1, MOTOR1DIR2, MOTOR1SPEED, ACTUATORPOT1, -2.2, TOLERANCE, 1, -0.00164, 3); //3.05 for #1
+Actuator actuator2(MOTOR2DIR1, MOTOR2DIR2, MOTOR2SPEED, ACTUATORPOT2, -2.2, TOLERANCE, 2, -0.00164, 3); //3.38 for #1
 
 //Thermocouple sensor
 Adafruit_MAX31855 thermocouple(TCLK, TCS, TDO); //Setup the thermocouple

@@ -7,7 +7,7 @@
 
 #include "Differential.h"
 
-Differential::Differential (int _pin, int _id) : DataCollector(_pin, _id, 0.06077, 15, 'D') {
+Differential::Differential (int _pin, int _id) : DataCollector(_pin, _id, 0.06077, 0, 40, 'D') {
 
 }
 

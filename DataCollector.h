@@ -15,20 +15,24 @@ public:
 	elapsedMillis avgUpdate;
 	elapsedMillis serialUpdate;
 
-	DataCollector(int _pin, int _id, float _conversion, int _dataSize, char _prefix);
+	DataCollector(int _pin, int _id, float _conversion, float _offset, int _dataSize, char _prefix, int _serialInterval);
+	DataCollector(int _pin, int _id, float _conversion, float _offset, int _dataSize, char _prefix);
 	DataCollector(int _id, int _dataSize, char _prefix);
 	void Update();
 	float AvgData ();
 	float ReadData ();
 	void AddData ();
 	void DisableSerial ();
+	float* GetData();
 
 private:
 	int id;
 	int pin;
 	int dataSize;
+	int serialInterval;
 	bool serial;
 	float *data;
+	float offset;
 	float conversion;
 	char prefix;
 };

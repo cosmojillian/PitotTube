@@ -9,19 +9,14 @@
 #define ACTUATOR_H
 
 #include "Arduino.h"
+#include "DataCollector.h"
 
-#define RUNNINGAVGLEN 20
-
-#ifndef AVGUPDATE
-#define AVGUPDATE 2
+#ifndef ACTUATORAVGLEN
+#define ACTUATORAVGLEN 20
 #endif
 
 #ifndef CONTROLUPDATE
 #define CONTROLUPDATE 5
-#endif
-
-#ifndef SERIALUPDATE
-#define SERIALUPDATE 40
 #endif
 
 #ifndef MAXSERIALDIGITS
@@ -32,37 +27,31 @@
 #define FASTSPEED 240
 #endif
 
-class Actuator {
+class Actuator : public DataCollector {
 public:
-	elapsedMillis avgUpdate;
-	elapsedMillis serialUpdate;
 	elapsedMillis controlUpdate;
 
-	Actuator (int dir1Pin, int dir2Pin, int enPin, int feedPin, float startPos, float tol, char num);
+	Actuator (int dir1Pin, int dir2Pin, int enPin, int feedPin, float startPos, float tol, int num, float scalar, float offset);
 	void Update();
 	bool MoveActuator (double currentPosion);
-	float AvgPosition ();
+	float AvgData ();
 	void Fault ();
 	void SetPosition (double newPosition);
 	void SetDependent (Actuator *depend);
 	float GetSetPosition ();
-	float ReadPosition ();
-	void AddPosition ();
+	float ReadData ();
+	void AddData ();
 	void DisableSerial ();
+	float* GetData ();
 
 private:
-	char id;
 	bool fault;
-	bool serial;
 	int dir1;
 	int dir2;
 	int enable;
-	int feedback;
 	float runout;
 	float tolerance;
 	float setPosition;
-	float oldPosition;
-	float position[RUNNINGAVGLEN];
 
 	Actuator *dependent;
 };

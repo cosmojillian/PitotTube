@@ -7,7 +7,7 @@
 
 #include "Transducer.h"
 
-Transducer::Transducer (int _pin, int _id) : DataCollector(_pin, _id, 0.00733, 15, 'A') {
+Transducer::Transducer (int _pin, int _id) : DataCollector(_pin, _id, 0.00733*.951 , 1.052, 40, 'A') {
 
 }
 
