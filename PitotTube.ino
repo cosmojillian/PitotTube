@@ -36,11 +36,11 @@
  */
 
 //Actuators
-Actuator actuator1(MOTOR1DIR1, MOTOR1DIR2, MOTOR1SPEED, ACTUATORPOT1, -2.2, TOLERANCE, 1, -0.00164, 3); //3.05 for #1
-Actuator actuator2(MOTOR2DIR1, MOTOR2DIR2, MOTOR2SPEED, ACTUATORPOT2, -2.2, TOLERANCE, 2, -0.00164, 3); //3.38 for #1
+Actuator actuator1(MOTOR1DIR1, MOTOR1DIR2, MOTOR1SPEED, ACTUATORPOT1, -2.2, TOLERANCE, 1, -0.00164, 3.05); //3.05 for #1 3.26 for #2
+Actuator actuator2(MOTOR2DIR1, MOTOR2DIR2, MOTOR2SPEED, ACTUATORPOT2, -2.2, TOLERANCE, 2, -0.00164, 3.24); //3.24 for #1 2.99 for #2
 
 //Thermocouple sensor
-Adafruit_MAX31855 thermocouple(TCLK, TCS, TDO); //Setup the thermocouple
+//Adafruit_MAX31855 thermocouple(TCLK, TCS, TDO); //Setup the thermocouple
 
 //Pressure sensors
 Transducer transducer(TRANSDUCERPIN, 1);
@@ -86,10 +86,10 @@ void setup() {
 	}
 
 	//Populate the running temp array with real values before starting the main loop
-	while (tempRange[0] == 0) {
+	/*while (tempRange[0] == 0) {
 		AddAvg(thermocouple.readCelsius(), tempRange);
 		delay(TEMPADDINTERVAL); //A necessary evil to populate the array with good data
-	}
+	}*/
 	//end removed
 }
 
@@ -99,27 +99,27 @@ void loop() {
 	if (lastTempGrab >= TEMPADDINTERVAL) {
 		lastTempGrab -= TEMPADDINTERVAL;
 
-		if (SENDTEMP) {
+		/*if (SENDTEMP) {
 			AddAvg(thermocouple.readCelsius(), tempRange);
-		}
+		}*/
 	}
 
 	if (lastSerialAdd >= SERIALUPDATEINTERVAL) { //Send the temperature over serial every so often
 		lastSerialAdd -= SERIALUPDATEINTERVAL; //subtract the update interval from the timer so if we get off a little one time it will get back to the same interval
 
-		if (SENDTEMP) {
+		/*if (SENDTEMP) {
 			Serial.print("T1S");
 			Serial.println(ReadAvg(tempRange));
-		}
+		}*/
 	}
 	//end removed
 
 
 	transducer.Update();
-	differential1.Update();
-	differential2.Update();
-	actuator1.Update();
-	actuator2.Update();
+	//differential1.Update();
+	//differential2.Update();
+	//actuator1.Update();
+	//actuator2.Update();
 
 	if (Serial.available() > 0) {
 		if (isalpha(Serial.peek())) {

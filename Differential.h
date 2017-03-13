@@ -2,7 +2,7 @@
  * Differential.h
  *
  *  Created on: Aug 25, 2016
- *      Author: cosmo
+ *      Author: Caroline
  */
 
 #ifndef DIFFERENTIAL_H_

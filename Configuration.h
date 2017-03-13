@@ -2,7 +2,7 @@
  * Configuration.h
  *
  *  Created on: Aug 26, 2016
- *      Author: cosmo
+ *      Author: Caroline
  */
 
 #ifndef CONFIGURATION_H_
@@ -46,7 +46,7 @@
 #define MOTOR2DIR2 2
 #define MOTOR2SPEED 3
 #define ACTUATORPOT2 3 //Analog pin
-#define TOLERANCE 0.01
+#define TOLERANCE 0.015
 
  //What pins on the teensy are the amp board pins connected to DO, CS, and CLK are labled on the amp board
 #define TDO 11

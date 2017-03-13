@@ -2,7 +2,7 @@
  * Actuator.cpp
  *
  *  Created on: Aug 24, 2016
- *      Author: Cosmo Longnecker
+ *      Author: Caroline Longnecker
  */
 
 #include "Actuator.h"
@@ -64,7 +64,7 @@ bool Actuator::MoveActuator (double curPos) {
 		if (difference > 1) {
 			analogWrite(enable, FASTSPEED);
 		} else {
-			int speed = (pow(difference,3)*70) + 80;
+			int speed = (pow(difference,3)*70) + 90;
 			analogWrite(enable, speed);
 		}
 		if (setPosition > curPos) {

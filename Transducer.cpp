@@ -2,7 +2,7 @@
  * Transducer.cpp
  *
  *  Created on: Aug 24, 2016
- *      Author: Cosmo Longnecker
+ *      Author: Caroline Longnecker
  */
 
 #include "Transducer.h"

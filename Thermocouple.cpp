@@ -2,7 +2,7 @@
  * Thermocouple.cpp
  *
  *  Created on: Sep 13, 2016
- *      Author: cosmo
+ *      Author: Caroline
  */
 
 #include "Thermocouple.h"

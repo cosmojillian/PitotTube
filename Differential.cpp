@@ -2,7 +2,7 @@
  * Differential.cpp
  *
  *  Created on: Aug 25, 2016
- *      Author: cosmo
+ *      Author: Caroline
  */
 
 #include "Differential.h"
